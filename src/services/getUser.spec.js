@@ -1,8 +1,9 @@
 const buildUser = require("../entities/user");
 const buildGetUser = require("./getUser");
 const buildFakeUser = require("../../test/buildFakeUser");
-// const mockDatabase = require("../../test/mockDatabase");
-const db = require("../db");
+const db = require(process.env.NODE_ENV === "test"
+  ? "../../test/mockDatabase"
+  : "../db");
 
 describe("Service: Getting users", () => {
   const getUserService = buildGetUser(db);

@@ -1,8 +1,9 @@
 const buildAddUser = require("./addUser");
 const buildDeleteUser = require("./deleteUser");
 const buildFakeUser = require("../../test/buildFakeUser");
-// const mockDatabase = require("../../test/mockDatabase");
-const db = require("../db");
+const db = require(process.env.NODE_ENV === "test"
+  ? "../../test/mockDatabase"
+  : "../db");
 
 describe("Service: Deleting users", () => {
   const addUserService = buildAddUser(db);
