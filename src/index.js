@@ -4,6 +4,7 @@ const PORT = process.env.PORT || 5000;
 const controllers = require("./controllers");
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 function callback(controller) {
   return (req, res) => {
