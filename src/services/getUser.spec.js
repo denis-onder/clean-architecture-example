@@ -9,7 +9,7 @@ describe("Service: Getting users", () => {
     // Add user
     const userDetails = buildFakeUser();
     const user = buildUser(userDetails);
-    mockDatabase.insertUser(user);
+    mockDatabase.insertOne(user);
     // Look the user up
     expect(await getUserService(userDetails.email)).toHaveProperty(
       "id",

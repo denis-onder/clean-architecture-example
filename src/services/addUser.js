@@ -7,7 +7,7 @@ module.exports = db => {
     const exists = await db.findByEmail(user.email);
     if (exists) throw new Error("This email address is already in use.");
     // 2. Insert the new user into the database
-    const entry = await db.insertUser(user);
+    const entry = await db.insertOne(user);
     // 3. Return the inserted entry
     return entry;
   };
