@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --watch src/**/**/*.spec.js"
+    "test": "jest --watch src"
   },
   "keywords": [],
   "author": "",
