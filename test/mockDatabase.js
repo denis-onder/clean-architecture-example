@@ -17,19 +17,19 @@ class MockDatabase {
     return entry;
   }
   update(doc) {
-    let document;
     let index;
 
     this.collection.forEach((v, i) => {
-      if (v.id === doc.id) {
-        document = v;
-        index = i;
-      }
+      if (v.id === doc.id) index = i;
     });
 
     this.collection.splice(index, 1, doc);
 
     return this.collection[index];
+  }
+  deleteOne(id) {
+    const exists = this.findById(id);
+    return { deletedCount: exists ? 1 : 0 };
   }
 }
 
