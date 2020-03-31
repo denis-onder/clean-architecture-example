@@ -16,6 +16,7 @@
     "uuid": "^7.0.2"
   },
   "devDependencies": {
+    "faker": "^4.1.0",
     "jest": "^25.2.4"
   }
 }

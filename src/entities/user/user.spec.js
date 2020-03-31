@@ -1,20 +1,33 @@
 const buildUser = require("./");
+const buildFakeUser = require("../../../test/buildFakeUser");
 
 describe("User entity", () => {
-  // Create a user
-  const userInfo = require("../../../test/dummyData.json");
-  const user = buildUser(userInfo.user);
-  // Run the test suite against the user
   it("must have an id", () => {
-    expect(user.id).toBeDefined();
+    const user = buildFakeUser({ id: null });
+    expect(() => buildUser(user)).toThrowError("An ID is required.");
   });
 
   it("must have an email address", () => {
-    expect(user.email).toBe(userInfo.user.email);
+    const user = buildFakeUser({ email: null });
+    expect(() => buildUser(user)).toThrowError("An email address is required.");
   });
 
-  it("must return an encrypted password", () => {
-    expect(user.password).toBeTruthy();
-    expect(user.password).not.toBe(userInfo.user.password);
+  it("must have a valid email address", () => {
+    const user = buildFakeUser({ email: "test1234" });
+    expect(() => buildUser(user)).toThrowError(
+      "Please provide a valid email address."
+    );
+  });
+
+  it("must have a password", () => {
+    const user = buildFakeUser({ password: null });
+    expect(() => buildUser(user)).toThrowError("A password is required.");
+  });
+
+  it("must have both mathing password fields", () => {
+    const user = buildFakeUser({ confirmPassword: null });
+    expect(() => buildUser(user)).toThrowError(
+      "The confirm password field is required."
+    );
   });
 });
